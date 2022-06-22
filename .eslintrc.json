@@ -29,6 +29,8 @@
     "react/jsx-props-no-spreading": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "react/button-has-type": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-no-bind": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "import/extensions": [
@@ -40,7 +42,8 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "import/resolver": {

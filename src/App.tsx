@@ -3,20 +3,26 @@ import { ThemeProvider } from 'styled-components';
 
 import { Layout } from './components/Layout';
 import { Product } from './pages/Product';
-import { GlobalStyle } from './styles/global';
+import { Cart } from './pages/Cart';
+import { Checkout } from './pages/Checkout';
+import { CartProvider } from './context/cart';
 
 import { theme } from './styles/themes/theme';
+import { GlobalStyle } from './styles/global';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="products" element={<Product />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="products/:id" element={<Product />} />
+              <Route path="cart" element={<Cart />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
 
       <GlobalStyle />
     </ThemeProvider>

@@ -14,14 +14,14 @@ export const ProductSummary = styled.div`
 
   > section:first-child {
     width: 30rem;
-    height: 27rem;
+    height: 29rem;
     flex-shrink: 0;
   }
 
   img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: containt;
   }
 
   @media(max-width: 885px) {
@@ -37,7 +37,8 @@ export const ProductSummary = styled.div`
 export const ProductInfo = styled(Card)`
   display: flex;
   flex-direction: column;
-  padding: 1.8rem 2rem;
+  flex: 1;
+  padding: 1.8rem 3rem;
 
   .price {
     margin: 3rem 0 2.6rem;

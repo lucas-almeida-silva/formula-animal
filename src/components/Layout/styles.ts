@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 1rem 2rem;
+  padding: 1rem 3rem;
 
   div {
     display: flex;
@@ -31,7 +31,8 @@ export const Content = styled.main`
 
 export const Footer = styled.div`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 2rem;
+  padding: 2rem 3rem;
+  color: #fff;
 
   div {
     display: flex;
