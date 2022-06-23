@@ -6,9 +6,5 @@ type CardProps = {
 };
 
 export function Card({ children, ...props }: CardProps): JSX.Element {
-  return (
-    <Container {...props}>
-      {children}
-    </Container>
-  );
+  return <Container {...props}>{children}</Container>;
 }

@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import { Card } from '../../components/Card';
 
 export const Container = styled.div`
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 1.5rem 0.5rem;
 `;
 
 export const ProductSummary = styled.div`
@@ -12,7 +11,7 @@ export const ProductSummary = styled.div`
   justify-content: space-between;
   gap: 2rem;
 
-  > section:first-child {
+  > div:first-child {
     width: 30rem;
     height: 29rem;
     flex-shrink: 0;
@@ -21,15 +20,27 @@ export const ProductSummary = styled.div`
   img {
     height: 100%;
     width: 100%;
-    object-fit: containt;
+    object-fit: contain;
   }
 
-  @media(max-width: 885px) {
+  @media (max-width: 885px) {
     flex-direction: column;
 
-    > section:first-child {
+    > div:first-child {
       width: 100%;
-      max-height: 32rem;
+      height: 32rem;
+    }
+  }
+
+  @media (max-width: 620px) {
+    > section:first-child {
+      height: 30rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    > section:first-child {
+      height: 25rem;
     }
   }
 `;
@@ -40,28 +51,21 @@ export const ProductInfo = styled(Card)`
   flex: 1;
   padding: 1.8rem 3rem;
 
-  .price {
-    margin: 3rem 0 2.6rem;
-
-    strong {
-      display: block;
-      font-size: 2.6rem;
-      font-weight: 600;
-    }
-
-    span {
-      display: block;
-      font-size: 1.1rem;
-      font-weight: 500;
-      margin-top: 0.5rem;
-    }
+  h1 {
+    line-height: 2rem;
+    font-size: 1.6rem;
   }
 
-  > div:not(.price) {
+  > div:not(.value) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.95rem;
+    font-size: 1.1rem;
+
+    span {
+      font-size: inherit;
+      font-weight: 500;
+    }
 
     & + div {
       margin-top: 1rem;
@@ -69,6 +73,21 @@ export const ProductInfo = styled(Card)`
 
     &:last-of-type {
       margin-bottom: 2rem;
+    }
+  }
+
+  .value {
+    margin: 3rem 0 2.6rem;
+
+    strong {
+      font-size: 2.6rem;
+    }
+
+    span {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
     }
   }
 
@@ -88,10 +107,9 @@ export const Specifications = styled(Card)`
 
   table {
     width: 100%;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 
     tr {
-
       &:nth-child(even) {
         background: ${({ theme }) => theme.colors.background};
       }

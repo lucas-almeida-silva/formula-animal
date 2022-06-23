@@ -7,7 +7,8 @@
   "extends": [
     "airbnb",
     "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -24,6 +25,9 @@
     "prettier"
   ],
   "rules": {
+    "prettier/prettier": ["error", {
+      "endOfLine":"auto"
+    }],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
     "react/react-in-jsx-scope": "off",
     "react/jsx-props-no-spreading": "off",
@@ -31,6 +35,8 @@
     "react/button-has-type": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-no-bind": "off",
+    "object-curly-newline": "off",
+    "implicit-arrow-linebreak": "off",
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
     "import/extensions": [

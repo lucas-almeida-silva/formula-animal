@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, input, textarea, select {
+  body, input, textarea, select, p, span {
     font: 400 1rem Inter, sans-serif;
   }
 

@@ -8,37 +8,71 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 1rem 3rem;
+  padding: 1rem 4rem;
 
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
 
     img {
       width: 4rem;
       border-radius: 50%;
     }
+
+    a {
+      background: transparent;
+      border: none;
+      color: #fff;
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      svg {
+        font-size: 2rem;
+      }
+
+      span {
+        position: absolute;
+        bottom: 18px;
+        right: -17px;
+
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        background-color: red;
+        color: #fff;
+
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
   }
 `;
 
 export const Content = styled.main`
   flex: 1;
-  padding: 1rem;
+  padding: 2.5rem 1.2rem;
 `;
 
-export const Footer = styled.div`
+export const Footer = styled.footer`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 2rem 3rem;
+  padding: 2rem 4rem;
   color: #fff;
 
   div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1400px;
+    max-width: 1500px;
     margin: 0 auto;
   }
 `;

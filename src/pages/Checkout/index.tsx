@@ -4,13 +4,9 @@ import { Container } from './styles';
 export function Checkout() {
   return (
     <Container>
-      <Card>
-        Checkout
-      </Card>
+      <Card>Checkout</Card>
 
-      <aside>
-        aside
-      </aside>
+      <aside>aside</aside>
     </Container>
   );
 }

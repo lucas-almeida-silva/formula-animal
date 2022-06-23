@@ -4,8 +4,39 @@
       "id": "e842096e-0614-49ff-8bde-9ee3bc38029f",
       "title": "Dipirona Sódica 500mg Genérico EMS 10 Comprimidos",
       "image": "https://www.drogariaminasbrasil.com.br/media/product/311/dipirona-monoidratada-500mg-com-30-comprimidos-generico-prati-donaduzzi-4c8.jpg",
-      "price": 20.00,
-      "installments": 3,
+      "value": 12.90,
+      "installments": 2,
+      "freight": 12.90,
+      "deadline": {
+        "quantity": 1,
+        "unity": "dia"
+      },
+      "especifications": [
+        {
+          "title": "Quantidade",
+          "description": "500ml"
+        },
+        {
+          "title": "Tipo",
+          "description": "Analgésico"
+        },
+        {
+          "title": "Marca",
+          "description": "Genérico"
+        }
+      ]
+    },
+    {
+      "id": "68a696e4-bc9d-4245-9aeb-a32ad218ae3c",
+      "title": "Dipirona Sódica 500mg Genérico EMS 10 Comprimidos",
+      "image": "https://www.drogariaminasbrasil.com.br/media/product/311/dipirona-monoidratada-500mg-com-30-comprimidos-generico-prati-donaduzzi-4c8.jpg",
+      "value": 9.90,
+      "installments": 1,
+      "freight": 4.50,
+      "deadline": {
+        "quantity": 3,
+        "unity": "horas"
+      },
       "especifications": [
         {
           "title": "Quantidade",

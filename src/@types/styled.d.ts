@@ -6,10 +6,10 @@ interface Theme {
     primary: string;
     background: string;
     textPrimary: string;
+    textDanger: string;
     textSecondary: string;
     title: string;
     card: string;
-    menu: string;
     inputLabel: string;
     inputLabelSecondary: string;
     inputBorder: string;
@@ -20,7 +20,6 @@ interface Theme {
     disabledButton: string;
     disabledButtonText: string;
     loader: string;
-    loaderSpinner: string;
   };
 }
 

@@ -3,37 +3,51 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button } from '../../components/Button';
 import { Card } from '../../components/Card';
+import { Loader } from '../../components/Loader';
 import { useCart } from '../../hooks/useCart';
+
 import { api } from '../../services/api';
 import { formatValue } from '../../utils/formatValue';
 
 import {
-  Container, Specifications, ProductInfo, ProductSummary,
+  Container,
+  Specifications,
+  ProductInfo,
+  ProductSummary,
 } from './styles';
 
 type Especification = {
   title: string;
   description: string;
-}
+};
+
+type Deadline = {
+  quantity: number;
+  unity: string;
+};
 
 type Product = {
   id: string;
   title: string;
   description: string;
   image: string;
-  price: number;
-  priceFormatted: string;
+  value: number;
+  valueFormatted: string;
   installments: number;
   installmentValue: string;
+  freight: number;
+  freightFormatted: string;
+  deadline: Deadline;
   especifications: Especification[];
-}
+};
 
 type ProductParams = {
   id: string;
-}
+};
 
 export function Product() {
   const [product, setProduct] = useState<Product>({} as Product);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useCart();
   const productParams = useParams<ProductParams>();
@@ -42,17 +56,20 @@ export function Product() {
   useEffect(() => {
     async function getProduct() {
       try {
-        const response = await api.get(`/products/${productParams.id}`);
+        const { data } = await api.get(`/products/${productParams.id}`);
 
-        const installmentValue = (response.data.price / response.data.installments);
+        const installmentValue = data.value / data.installments;
 
         setProduct({
-          ...response.data,
-          priceFormatted: response.data.price.toLocaleString(),
+          ...data,
+          valueFormatted: formatValue(data.value),
           installmentValue: formatValue(installmentValue),
+          freightFormatted: formatValue(data.freight),
         });
       } catch {
         navigate('/');
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -62,6 +79,10 @@ export function Product() {
   function handleAddToCart() {
     addToCart(product);
     navigate('/cart');
+  }
+
+  if (isLoading) {
+    return <Loader />;
   }
 
   return (
@@ -74,21 +95,23 @@ export function Product() {
         <ProductInfo>
           <h1>{product.title}</h1>
 
-          <div className="price">
-            <strong>
-              R$ {product?.priceFormatted}
-            </strong>
-            <span>{product.installments}x de R$ {product.installmentValue}</span>
+          <div className="value">
+            <strong>{product.valueFormatted}</strong>
+            <span>
+              {product.installments}x de R$ {product.installmentValue}
+            </span>
           </div>
 
           <div>
             <strong>Frete</strong>
-            <span>Grátis</span>
+            <span>{product.freightFormatted || 'Grátis'}</span>
           </div>
 
           <div>
             <strong>Prazo de entrega</strong>
-            <span>7 dias</span>
+            <span>
+              {product.deadline.quantity} {product.deadline.unity}
+            </span>
           </div>
 
           <Button type="button" onClick={handleAddToCart}>

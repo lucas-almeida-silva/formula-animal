@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { Layout } from './components/Layout';
@@ -19,6 +19,8 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route path="products/:id" element={<Product />} />
               <Route path="cart" element={<Cart />} />
+              <Route path="checkout" element={<Checkout />} />
+              <Route path="*" element={<Navigate to="/" />} />
             </Route>
           </Routes>
         </BrowserRouter>
