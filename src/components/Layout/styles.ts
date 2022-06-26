@@ -22,7 +22,7 @@ export const Header = styled.header`
       border-radius: 50%;
     }
 
-    a {
+    a:nth-child(2) {
       background: transparent;
       border: none;
       color: #fff;

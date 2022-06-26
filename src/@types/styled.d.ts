@@ -15,11 +15,18 @@ interface Theme {
     inputBorder: string;
     inputBorderDanger: string;
     inputBackground: string;
-    inputText: string;
+    disabledInput: string;
+    disabledInputText: string;
     divisor: string;
     disabledButton: string;
     disabledButtonText: string;
     loader: string;
+    arrow: string;
+    arrowBackground: string;
+    carouselDotgBorder: string;
+    carouselDotBackground: string;
+    carouselThumbBorder: string;
+    carouselThumbBorderSelected: string;
   };
 }
 

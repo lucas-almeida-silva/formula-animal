@@ -21,13 +21,11 @@ type Product = {
   id: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   value: number;
-  valueFormatted: string;
   installments: number;
   installmentValue: string;
   freight: number;
-  freightFormatted: string;
   deadline: Deadline;
   especifications: Especification[];
   quantity: number;
@@ -36,6 +34,9 @@ type Product = {
 type CartContextData = {
   products: Product[];
   totalItems: number;
+  totalFreight: number;
+  totalValueProducts: number;
+  totalValue: number;
   addToCart: (product: Omit<Product, 'quantity'>) => void;
   removeFromCart: (productId: string) => void;
   incrementQuantity: (productId: string) => void;
@@ -63,6 +64,34 @@ export function CartProvider({ children }: CardProviderProps) {
 
     return [];
   });
+
+  const totalFreight = useMemo(() => {
+    const totalValue = products.reduce(
+      (accumulator, product) => accumulator + product.freight,
+      0,
+    );
+
+    return totalValue;
+  }, [products]);
+
+  const totalValueProducts = useMemo(() => {
+    const total = products.reduce(
+      (accumulator, product) => accumulator + product.quantity * product.value,
+      0,
+    );
+
+    return total;
+  }, [products]);
+
+  const totalValue = useMemo(() => {
+    const total = products.reduce(
+      (accumulator, product) =>
+        accumulator + product.freight + product.quantity * product.value,
+      0,
+    );
+
+    return total;
+  }, [products]);
 
   useEffect(() => {
     localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
@@ -163,12 +192,15 @@ export function CartProvider({ children }: CardProviderProps) {
   const value = useMemo(
     () => ({
       products,
+      totalItems,
+      totalFreight,
+      totalValueProducts,
+      totalValue,
       addToCart: handleAddToCart,
       removeFromCart: handleRemoveFromCart,
       incrementQuantity: handleIncrementQuantity,
       decrementQuantity: handleDecrementQuantity,
       changeQuantity: handleChangeQuantity,
-      totalItems,
     }),
     [
       handleAddToCart,
@@ -177,7 +209,10 @@ export function CartProvider({ children }: CardProviderProps) {
       handleIncrementQuantity,
       handleRemoveFromCart,
       products,
+      totalFreight,
       totalItems,
+      totalValueProducts,
+      totalValue,
     ],
   );
 

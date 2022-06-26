@@ -12,10 +12,12 @@ export function Layout() {
     <Container>
       <Header>
         <div>
-          <img
-            src="https://img.freepik.com/vetores-gratis/frasco-de-remedio-comprimidos-e-ilustracao-de-icone-dos-desenhos-animados-de-pilulas-conceito-de-icone-de-medicina-de-saude-isolado-premium-estilo-flat-cartoon_138676-1625.jpg?w=2000"
-            alt="Fórmula Animal"
-          />
+          <Link to="/">
+            <img
+              src="https://img.freepik.com/vetores-gratis/frasco-de-remedio-comprimidos-e-ilustracao-de-icone-dos-desenhos-animados-de-pilulas-conceito-de-icone-de-medicina-de-saude-isolado-premium-estilo-flat-cartoon_138676-1625.jpg?w=2000"
+              alt="Fórmula Animal"
+            />
+          </Link>
 
           <Link to="/cart">
             <FiShoppingCart />

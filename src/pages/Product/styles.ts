@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { Carousel } from 'react-responsive-carousel';
+
 import { Card } from '../../components/Card';
 
 export const Container = styled.div`
@@ -13,7 +15,6 @@ export const ProductSummary = styled.div`
 
   > div:first-child {
     width: 30rem;
-    height: 29rem;
     flex-shrink: 0;
   }
 
@@ -28,7 +29,6 @@ export const ProductSummary = styled.div`
 
     > div:first-child {
       width: 100%;
-      height: 32rem;
     }
   }
 
@@ -41,6 +41,72 @@ export const ProductSummary = styled.div`
   @media (max-width: 480px) {
     > section:first-child {
       height: 25rem;
+    }
+  }
+`;
+
+export const Images = styled(Carousel)`
+  .control-dots {
+    bottom: -10px;
+  }
+
+  .dot {
+    height: 10px !important;
+    width: 10px !important;
+    border-radius: 50% !important;
+    border: 1px solid ${({ theme }) => theme.colors.carouselDotgBorder};
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    &.selected {
+      box-shadow: none;
+      background: ${({ theme }) => theme.colors.carouselDotBackground};
+    }
+  }
+
+  .thumb {
+    border: 1px solid ${({ theme }) => theme.colors.carouselThumbBorder};
+  }
+
+  .thumb.selected {
+    border: 1px solid ${({ theme }) => theme.colors.carouselThumbBorderSelected};
+  }
+`;
+
+export const CarouselArrow = styled.div`
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+
+  &.left {
+    left: 0.8rem;
+  }
+
+  &.right {
+    right: 0.8rem;
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 2rem;
+    color: ${({ theme }) => theme.colors.arrow};
+    border: none;
+    background: transparent;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: 0.3s;
+
+    &:hover {
+      background: ${({ theme }) => theme.colors.arrowBackground};
     }
   }
 `;

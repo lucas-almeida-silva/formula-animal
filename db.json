@@ -3,10 +3,14 @@
     {
       "id": "e842096e-0614-49ff-8bde-9ee3bc38029f",
       "title": "Dipirona Sódica 500mg Genérico EMS 10 Comprimidos",
-      "image": "https://www.drogariaminasbrasil.com.br/media/product/311/dipirona-monoidratada-500mg-com-30-comprimidos-generico-prati-donaduzzi-4c8.jpg",
+      "images": [
+        "https://img.drogaraia.com.br/catalog/product/d/i/dipirona-monoidratada-500mg-com-10-comprimidos-prati-donaduzzi.jpg",
+        "https://drogariasp.vteximg.com.br/arquivos/ids/569366-1000-1000/288799---dipirona-sodica-500mg-generico-medley-10-comprimidos.jpg",
+        "https://www.drogarianovaesperanca.com.br/imagens/600x600/dipirona-500mg-com-10-comprimidos-a-definir-a7866133c5.jpg"
+      ],
       "value": 12.90,
       "installments": 2,
-      "freight": 12.90,
+      "freight": 3.99,
       "deadline": {
         "quantity": 1,
         "unity": "dia"
@@ -14,7 +18,7 @@
       "especifications": [
         {
           "title": "Quantidade",
-          "description": "500ml"
+          "description": "500mg"
         },
         {
           "title": "Tipo",
@@ -28,11 +32,14 @@
     },
     {
       "id": "68a696e4-bc9d-4245-9aeb-a32ad218ae3c",
-      "title": "Dipirona Sódica 500mg Genérico EMS 10 Comprimidos",
-      "image": "https://www.drogariaminasbrasil.com.br/media/product/311/dipirona-monoidratada-500mg-com-30-comprimidos-generico-prati-donaduzzi-4c8.jpg",
+      "title": "Decongex Plus",
+      "images": [
+        "https://www.drogariaminasbrasil.com.br/media/catalog/product/8/5/8515.jpg",
+        "https://drogariasp.vteximg.com.br/arquivos/ids/570626/80691---decongex-plus-ache-xarope-120ml.jpg?v=637830474853870000"
+      ],
       "value": 9.90,
       "installments": 1,
-      "freight": 4.50,
+      "freight": 3.99,
       "deadline": {
         "quantity": 3,
         "unity": "horas"
@@ -40,15 +47,15 @@
       "especifications": [
         {
           "title": "Quantidade",
-          "description": "500ml"
+          "description": "120ml"
         },
         {
           "title": "Tipo",
-          "description": "Analgésico"
+          "description": "Descongestionante Antialérgico"
         },
         {
-          "title": "Marca",
-          "description": "Genérico"
+          "title": "Uso",
+          "description": "Oral"
         }
       ]
     }

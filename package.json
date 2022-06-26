@@ -1,5 +1,5 @@
 {
-  "name": "formula-animal-checkout",
+  "name": "formula-animal",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -9,17 +9,30 @@
     "start:server": "json-server -p 3333 --watch db.json"
   },
   "dependencies": {
+    "@hookform/resolvers": "^2.9.2",
     "axios": "^0.27.2",
+    "date-fns": "^2.28.0",
     "polished": "^4.2.2",
     "react": "^18.0.0",
+    "react-credit-cards": "^0.8.3",
     "react-dom": "^18.0.0",
+    "react-grid-system": "^8.1.5",
+    "react-hook-form": "^7.33.0",
     "react-icons": "^4.4.0",
+    "react-input-mask": "^2.0.4",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.3.0",
-    "styled-components": "^5.3.5"
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "styled-components": "^5.3.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
+    "@types/react-credit-cards": "^0.8.1",
     "@types/react-dom": "^18.0.0",
+    "@types/react-input-mask": "^3.0.1",
+    "@types/react-slick": "^0.23.8",
     "@types/styled-components": "^5.1.25",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",

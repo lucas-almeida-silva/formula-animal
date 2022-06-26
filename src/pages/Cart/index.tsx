@@ -13,6 +13,9 @@ export function Cart() {
   const {
     products,
     totalItems,
+    totalFreight,
+    totalValueProducts,
+    totalValue,
     incrementQuantity,
     decrementQuantity,
     changeQuantity,
@@ -21,33 +24,9 @@ export function Cart() {
 
   const navigate = useNavigate();
 
-  const totalValueProducts = useMemo(() => {
-    const totalValue = products.reduce(
-      (accumulator, product) => accumulator + product.quantity * product.value,
-      0,
-    );
-
-    return formatValue(totalValue);
-  }, [products]);
-
-  const totalFreight = useMemo(() => {
-    const totalValue = products.reduce(
-      (accumulator, product) => accumulator + product.freight,
-      0,
-    );
-
-    return formatValue(totalValue);
-  }, [products]);
-
-  const totalCart = useMemo(() => {
-    const totalValue = products.reduce(
-      (accumulator, product) =>
-        accumulator + product.freight + product.quantity * product.value,
-      0,
-    );
-
-    return formatValue(totalValue);
-  }, [products]);
+  const totalValueProductsFormatted = formatValue(totalValueProducts);
+  const totalFreightFormatted = formatValue(totalFreight);
+  const totalCartFormatted = formatValue(totalValue);
 
   function handleChangeProductQuantity(
     event: ChangeEvent<HTMLInputElement>,
@@ -87,7 +66,7 @@ export function Cart() {
             {products.map((product) => (
               <article key={product.id}>
                 <div>
-                  <img src={product.image} alt={product.title} />
+                  <img src={product.images[0]} alt={product.title} />
                   <span>{product.title}</span>
                 </div>
 
@@ -122,7 +101,7 @@ export function Cart() {
                   </button>
                 </Quantity>
 
-                <strong>{product.valueFormatted}</strong>
+                <strong>{formatValue(product.value)}</strong>
               </article>
             ))}
           </CartItems>
@@ -132,19 +111,19 @@ export function Cart() {
               <Summary>
                 <li>
                   <span>
-                    {totalItems} {totalItems === 1 ? 'produto' : 'produtos'}
+                    {`${totalItems} ${totalItems > 1 ? 'produtos' : 'produto'}`}
                   </span>
 
-                  <span>{totalValueProducts}</span>
+                  <span>{totalValueProductsFormatted}</span>
                 </li>
                 <li>
                   <span>Frete</span>
-                  <span>{totalFreight}</span>
+                  <span>{totalFreightFormatted}</span>
                 </li>
 
                 <li>
                   <span>Total</span>
-                  <strong>{totalCart}</strong>
+                  <strong>{totalCartFormatted}</strong>
                 </li>
               </Summary>
 

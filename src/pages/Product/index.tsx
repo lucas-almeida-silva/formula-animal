@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Carousel } from 'react-responsive-carousel';
 
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Button } from '../../components/Button';
-import { Card } from '../../components/Card';
 import { Loader } from '../../components/Loader';
-import { useCart } from '../../hooks/useCart';
 
+import { useCart } from '../../hooks/useCart';
 import { api } from '../../services/api';
 import { formatValue } from '../../utils/formatValue';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import {
   Container,
   Specifications,
   ProductInfo,
   ProductSummary,
+  Images,
+  CarouselArrow,
 } from './styles';
+import { Card } from '../../components/Card';
 
 type Especification = {
   title: string;
@@ -30,7 +36,7 @@ type Product = {
   id: string;
   title: string;
   description: string;
-  image: string;
+  images: string[];
   value: number;
   valueFormatted: string;
   installments: number;
@@ -89,7 +95,32 @@ export function Product() {
     <Container>
       <ProductSummary>
         <Card>
-          <img src={product.image} alt={product.title} />
+          <Images
+            showArrows
+            infiniteLoop
+            showStatus={false}
+            renderArrowPrev={(clickHandler, hasPrev, label) =>
+              hasPrev && (
+                <CarouselArrow className="left">
+                  <button type="button" onClick={clickHandler} title={label}>
+                    <FiChevronLeft />
+                  </button>
+                </CarouselArrow>
+              )
+            }
+            renderArrowNext={(clickHandler, hasNext, label) =>
+              hasNext && (
+                <CarouselArrow className="right">
+                  <button type="button" onClick={clickHandler} title={label}>
+                    <FiChevronRight />
+                  </button>
+                </CarouselArrow>
+              )
+            }>
+            {product.images.map((image) => (
+              <img key={image} src={image} alt={product.title} />
+            ))}
+          </Images>
         </Card>
 
         <ProductInfo>
