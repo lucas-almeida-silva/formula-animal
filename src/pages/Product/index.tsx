@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Carousel } from 'react-responsive-carousel';
 
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { Button } from '../../components/Button';
@@ -56,13 +55,13 @@ export function Product() {
   const [isLoading, setIsLoading] = useState(true);
 
   const { addToCart } = useCart();
-  const productParams = useParams<ProductParams>();
+  const { id } = useParams<ProductParams>();
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getProduct() {
       try {
-        const { data } = await api.get(`/products/${productParams.id}`);
+        const { data } = await api.get(`/products/${id}`);
 
         const installmentValue = data.value / data.installments;
 
@@ -80,7 +79,7 @@ export function Product() {
     }
 
     getProduct();
-  }, [navigate, productParams.id]);
+  }, [id, navigate]);
 
   function handleAddToCart() {
     addToCart(product);

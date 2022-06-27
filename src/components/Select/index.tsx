@@ -8,7 +8,7 @@ type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   label?: string;
   options: Array<{
     label: string;
-    value: string;
+    value: string | number;
   }>;
   error?: string;
 };

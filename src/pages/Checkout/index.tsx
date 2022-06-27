@@ -3,17 +3,12 @@ import { Controller, useForm } from 'react-hook-form';
 import axios from 'axios';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  parse,
-  isValid,
-  isFuture,
-  isSameMonth,
-  isSameYear,
-  format,
-} from 'date-fns';
+import { parse, isValid, isFuture, isSameMonth, isSameYear } from 'date-fns';
 import { Col } from 'react-grid-system';
 import CreditCard, { Focused } from 'react-credit-cards';
+import { toast } from 'react-toastify';
 
+import { useNavigate } from 'react-router-dom';
 import { Card } from '../../components/Card';
 import { Input } from '../../components/Input';
 import { InputMask } from '../../components/InputMask';
@@ -26,11 +21,7 @@ import { formatValue } from '../../utils/formatValue';
 
 import { Container, Form, FormGroupRow, Payment, Summary } from './styles';
 import 'react-credit-cards/es/styles-compiled.css';
-
-type Installment = {
-  quantity: number;
-  value: number;
-};
+import { Loader } from '../../components/Loader';
 
 type FormData = {
   address: {
@@ -105,6 +96,7 @@ export function Checkout() {
   const [addressFieldsDisabled, setAddressFieldsDisabled] = useState(true);
   const [creditCardInputFocused, setCreditCardInputFocused] =
     useState<Focused>();
+  const [isLoading, setIsLoading] = useState(false);
 
   const { products, totalItems, totalFreight, totalValueProducts, totalValue } =
     useCart();
@@ -114,6 +106,7 @@ export function Checkout() {
     control,
     setValue,
     getValues,
+    clearErrors,
     watch,
     formState: { errors },
     handleSubmit,
@@ -121,6 +114,8 @@ export function Checkout() {
     mode: 'onBlur',
     resolver: yupResolver(validationSchema),
   });
+
+  const navigate = useNavigate();
 
   const totalFreightFormatted = formatValue(totalFreight);
   const totalValueProductsFormatted = formatValue(totalValueProducts);
@@ -175,7 +170,7 @@ export function Checkout() {
     () =>
       installments.map((installment) => ({
         label: `${installment.quantity}x de ${formatValue(installment.value)}`,
-        value: String(installment.quantity),
+        value: installment.quantity,
       })),
     [installments],
   );
@@ -204,13 +199,44 @@ export function Checkout() {
       setValue('address.state', data.uf);
 
       setAddressFieldsDisabled(true);
+
+      clearErrors([
+        'address.street',
+        'address.state',
+        'address.neighborhood',
+        'address.city',
+      ]);
     } else {
       setAddressFieldsDisabled(false);
     }
   }
 
-  function onSubmit(data: FormData) {
-    console.log(data);
+  async function onSubmit(data: FormData) {
+    try {
+      console.log(data);
+      setIsLoading(true);
+
+      const { orderId } = await new Promise<{ orderId: string }>(
+        (resolve, reject) => {
+          setTimeout(() => {
+            resolve({
+              orderId: String(Math.random() * 1000),
+            });
+          }, 2000);
+        },
+      );
+
+      toast('Pedido realizado com sucesso', {
+        type: 'success',
+      });
+      navigate(`/completed-order/${orderId}`);
+    } catch {
+      toast('Ocorreu um erro ao finalizar o pedido', {
+        type: 'error',
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -420,8 +446,12 @@ export function Checkout() {
           </div>
         </footer>
 
-        <Button type="submit">Finalizar</Button>
+        <Button type="submit" onClick={handleSubmit(onSubmit)}>
+          Finalizar
+        </Button>
       </Summary>
+
+      {isLoading && <Loader />}
     </Container>
   );
 }

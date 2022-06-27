@@ -25,5 +25,6 @@ export const theme = {
     carouselDotBackground: '#e8e8e8',
     carouselThumbBorder: '#ccc',
     carouselThumbBorderSelected: '#333',
+    successBadge: '#349A63',
   },
 };

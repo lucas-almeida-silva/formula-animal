@@ -27,6 +27,7 @@ interface Theme {
     carouselDotBackground: string;
     carouselThumbBorder: string;
     carouselThumbBorderSelected: string;
+    successBadge: string;
   };
 }
 
