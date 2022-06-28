@@ -1,7 +1,38 @@
-export const theme = {
-  title: 'light',
+export interface Theme {
+  colors: {
+    primary: string;
+    secondary: string;
+    background: string;
+    textPrimary: string;
+    textDanger: string;
+    textSecondary: string;
+    title: string;
+    card: string;
+    inputLabel: string;
+    inputLabelSecondary: string;
+    inputBorder: string;
+    inputBorderDanger: string;
+    inputBackground: string;
+    disabledInput: string;
+    disabledInputText: string;
+    divisor: string;
+    disabledButton: string;
+    disabledButtonText: string;
+    loader: string;
+    arrow: string;
+    arrowBackground: string;
+    carouselDotgBorder: string;
+    carouselDotBackground: string;
+    carouselThumbBorder: string;
+    carouselThumbBorderSelected: string;
+    successBadge: string;
+  };
+}
+
+export const theme: Theme = {
   colors: {
     primary: '#463675',
+    secondary: '#248DA2',
     background: '#F0F0F7',
     textPrimary: '#2B2B2B',
     textSecondary: '#6A6180',

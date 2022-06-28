@@ -168,8 +168,12 @@ export const ProductInfo = styled(Card)`
     }
   }
 
-  button {
+  footer {
     margin-top: auto;
+
+    button + button {
+      margin-top: 0.8rem;
+    }
   }
 
   @media (max-width: 885px) {

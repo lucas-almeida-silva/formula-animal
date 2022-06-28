@@ -39,6 +39,7 @@ type CartContextData = {
   totalValue: number;
   addToCart: (product: Omit<Product, 'quantity'>) => void;
   removeFromCart: (productId: string) => void;
+  clearCart: () => void;
   incrementQuantity: (productId: string) => void;
   decrementQuantity: (product: string) => void;
   changeQuantity: (product: string, quantity: number) => void;
@@ -163,31 +164,43 @@ export function CartProvider({ children }: CardProviderProps) {
     [],
   );
 
-  const handleAddToCart = useCallback(
-    (product: Omit<Product, 'quantity'>) => {
-      const productExists = products.find((p) => p.id === product.id);
+  const handleAddToCart = useCallback((product: Omit<Product, 'quantity'>) => {
+    setProducts((prevState) => {
+      const productExists = prevState.find((p) => p.id === product.id);
 
       if (productExists) {
-        handleIncrementQuantity(product.id);
-      } else {
-        setProducts((prevState) => [
-          ...prevState,
-          {
-            ...product,
-            quantity: 1,
-          },
-        ]);
-      }
-    },
-    [handleIncrementQuantity, products],
-  );
+        return prevState.map((p) => {
+          if (p.id === product.id) {
+            return {
+              ...product,
+              quantity: p.quantity + 1,
+            };
+          }
 
-  const handleRemoveFromCart = useCallback(
-    (productId: string) => {
-      setProducts(products.filter((product) => product.id !== productId));
-    },
-    [products],
-  );
+          return p;
+        });
+      }
+
+      return [
+        ...prevState,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ];
+    });
+  }, []);
+
+  const handleRemoveFromCart = useCallback((productId: string) => {
+    setProducts((prevState) =>
+      prevState.filter((product) => product.id !== productId),
+    );
+  }, []);
+
+  const handleClearCart = useCallback(() => {
+    setProducts([]);
+    localStorage.removeItem(PRODUCTS_KEY);
+  }, []);
 
   const value = useMemo(
     () => ({
@@ -198,6 +211,7 @@ export function CartProvider({ children }: CardProviderProps) {
       totalValue,
       addToCart: handleAddToCart,
       removeFromCart: handleRemoveFromCart,
+      clearCart: handleClearCart,
       incrementQuantity: handleIncrementQuantity,
       decrementQuantity: handleDecrementQuantity,
       changeQuantity: handleChangeQuantity,
@@ -208,6 +222,7 @@ export function CartProvider({ children }: CardProviderProps) {
       handleDecrementQuantity,
       handleIncrementQuantity,
       handleRemoveFromCart,
+      handleClearCart,
       products,
       totalFreight,
       totalItems,

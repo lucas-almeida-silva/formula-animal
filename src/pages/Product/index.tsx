@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+
+import { Card } from '../../components/Card';
 import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
 
 import { useCart } from '../../hooks/useCart';
 import { api } from '../../services/api';
 import { formatValue } from '../../utils/formatValue';
-
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 import {
   Container,
@@ -19,7 +18,8 @@ import {
   Images,
   CarouselArrow,
 } from './styles';
-import { Card } from '../../components/Card';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 type Especification = {
   title: string;
@@ -55,13 +55,11 @@ export function Product() {
   const [isLoading, setIsLoading] = useState(true);
   const [isMobileMode, setIsMobileMode] = useState(false);
 
-  const { addToCart } = useCart();
+  const { addToCart, clearCart } = useCart();
   const { id } = useParams<ProductParams>();
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log('estou executando');
-
     function handleScreenRezize() {
       const isMobile = window.innerWidth <= 885;
 
@@ -101,6 +99,12 @@ export function Product() {
   function handleAddToCart() {
     addToCart(product);
     navigate('/cart');
+  }
+
+  function handleBuy() {
+    clearCart();
+    addToCart(product);
+    navigate('/checkout');
   }
 
   if (isLoading) {
@@ -162,9 +166,15 @@ export function Product() {
             </span>
           </div>
 
-          <Button type="button" onClick={handleAddToCart}>
-            Quero comprar
-          </Button>
+          <footer>
+            <Button type="button" color="secondary" onClick={handleAddToCart}>
+              Adicionar ao carrinho
+            </Button>
+
+            <Button type="button" onClick={handleBuy}>
+              Quero comprar
+            </Button>
+          </footer>
         </ProductInfo>
       </ProductSummary>
 

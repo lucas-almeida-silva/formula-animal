@@ -98,8 +98,14 @@ export function Checkout() {
     useState<Focused>();
   const [isLoading, setIsLoading] = useState(false);
 
-  const { products, totalItems, totalFreight, totalValueProducts, totalValue } =
-    useCart();
+  const {
+    products,
+    totalItems,
+    totalFreight,
+    totalValueProducts,
+    totalValue,
+    clearCart,
+  } = useCart();
 
   const {
     register,
@@ -216,15 +222,15 @@ export function Checkout() {
       console.log(data);
       setIsLoading(true);
 
-      const { orderId } = await new Promise<{ orderId: string }>(
-        (resolve, reject) => {
-          setTimeout(() => {
-            resolve({
-              orderId: String(Math.random() * 1000),
-            });
-          }, 2000);
-        },
-      );
+      const { orderId } = await new Promise<{ orderId: string }>((resolve) => {
+        setTimeout(() => {
+          resolve({
+            orderId: String(Math.random() * 1000),
+          });
+        }, 2000);
+      });
+
+      clearCart();
 
       toast('Pedido realizado com sucesso', {
         type: 'success',
