@@ -53,10 +53,27 @@ type ProductParams = {
 export function Product() {
   const [product, setProduct] = useState<Product>({} as Product);
   const [isLoading, setIsLoading] = useState(true);
+  const [isMobileMode, setIsMobileMode] = useState(false);
 
   const { addToCart } = useCart();
   const { id } = useParams<ProductParams>();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log('estou executando');
+
+    function handleScreenRezize() {
+      const isMobile = window.innerWidth <= 885;
+
+      if (isMobile !== isMobileMode) {
+        setIsMobileMode(isMobile);
+      }
+    }
+
+    window.addEventListener('resize', handleScreenRezize);
+
+    return () => window.removeEventListener('resize', handleScreenRezize);
+  });
 
   useEffect(() => {
     async function getProduct() {
@@ -98,6 +115,7 @@ export function Product() {
             showArrows
             infiniteLoop
             showStatus={false}
+            showThumbs={!isMobileMode}
             renderArrowPrev={(clickHandler, hasPrev, label) =>
               hasPrev && (
                 <CarouselArrow className="left">

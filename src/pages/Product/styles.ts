@@ -26,6 +26,7 @@ export const ProductSummary = styled.div`
 
   @media (max-width: 885px) {
     flex-direction: column;
+    gap: 0;
 
     > div:first-child {
       width: 100%;
@@ -85,11 +86,11 @@ export const CarouselArrow = styled.div`
   align-items: center;
 
   &.left {
-    left: 0.8rem;
+    left: 0.5rem;
   }
 
   &.right {
-    right: 0.8rem;
+    right: 0.5rem;
   }
 
   button {
@@ -107,6 +108,16 @@ export const CarouselArrow = styled.div`
 
     &:hover {
       background: ${({ theme }) => theme.colors.arrowBackground};
+    }
+  }
+
+  @media (max-width: 580px) {
+    &.left {
+      left: 4px;
+    }
+
+    &.right {
+      right: 4px;
     }
   }
 `;
@@ -143,7 +154,7 @@ export const ProductInfo = styled(Card)`
   }
 
   .value {
-    margin: 3rem 0 2.6rem;
+    margin: 2.8rem 0 2.6rem;
 
     strong {
       font-size: 2.6rem;
@@ -159,6 +170,30 @@ export const ProductInfo = styled(Card)`
 
   button {
     margin-top: auto;
+  }
+
+  @media (max-width: 885px) {
+    padding: 1.8rem 2rem;
+
+    h1 {
+      font-size: 1.5rem;
+      line-height: 1.8rem;
+    }
+
+    .value {
+      font-size: 2.5rem;
+      margin-top: 2.4rem;
+    }
+  }
+
+  @media (max-width: 580px) {
+    h1 {
+      font-size: 1.35rem;
+    }
+
+    .value {
+      font-size: 2.4rem;
+    }
   }
 `;
 
@@ -190,5 +225,9 @@ export const Specifications = styled(Card)`
         }
       }
     }
+  }
+
+  @media (max-width: 885px) {
+    padding: 2rem 1.5rem;
   }
 `;

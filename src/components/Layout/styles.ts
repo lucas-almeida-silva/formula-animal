@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   background: ${({ theme }) => theme.colors.primary};
-  padding: 1rem 4rem;
+  padding: 1rem 5.1rem 1rem 4rem;
 
   div {
     display: flex;
@@ -55,6 +55,10 @@ export const Header = styled.header`
         justify-content: center;
       }
     }
+  }
+
+  @media (max-width: 600px) {
+    padding: 1rem 3.1rem 1rem 2rem;
   }
 `;
 
