@@ -188,14 +188,16 @@ export function Checkout() {
   }
 
   async function handleFillAddressByZipCode() {
-    const zipCode = getValues('address.zipCode').replace(/\D/g, '');
+    const zipCode = getValues('address.zipCode');
 
-    if (!zipCode || zipCode.length !== 8) {
+    if (!zipCode || zipCode.length !== 9) {
       return;
     }
 
+    const rawZipCode = zipCode.replace(/\D/g, '');
+
     const { data } = await axios.get(
-      `https://viacep.com.br/ws/${zipCode}/json`,
+      `https://viacep.com.br/ws/${rawZipCode}/json`,
     );
 
     if (!data.erro) {
@@ -266,6 +268,7 @@ export function Checkout() {
                   error={errors.address?.zipCode?.message}
                   onChange={field.onChange}
                   onBlur={() => {
+                    console.log('blur');
                     field.onBlur();
                     handleFillAddressByZipCode();
                   }}

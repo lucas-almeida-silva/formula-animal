@@ -17,6 +17,10 @@ export const Container = styled.div`
   @media (max-width: 930px) {
     flex-direction: column;
   }
+
+  @media (max-width: 540px) {
+    padding: 1rem 0.5rem;
+  }
 `;
 
 export const Form = styled.form`
@@ -41,17 +45,17 @@ export const Form = styled.form`
   button {
     margin-top: 3rem;
   }
+
+  @media (max-width: 540px) {
+    padding: 3rem 1.4rem;
+  }
 `;
 
 export const Payment = styled.div`
   display: flex;
 
-  .rcss {
-    margin: 0;
-  }
-
   > div:nth-child(2) {
-    margin-left: 4rem;
+    margin-left: 3.2rem;
     flex: 1;
   }
 
@@ -59,8 +63,15 @@ export const Payment = styled.div`
     flex-direction: column;
 
     > div:nth-child(2) {
-      margin-top: 3.4rem;
+      margin-top: 2.8rem;
       margin-left: 0;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .rccs,
+    .rccs__card {
+      width: 100%;
     }
   }
 `;
